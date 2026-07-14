@@ -1549,7 +1549,7 @@ def main():
 # 로그인 페이지
 # ─────────────────────────────────────────────────────
 def show_login_page(client):
-st.markdown(
+    st.markdown(
         """
         <div style='text-align: center; padding: 1.5rem 1rem 0.5rem 1rem;'>
             <h1>🏔️ 오르다</h1>
