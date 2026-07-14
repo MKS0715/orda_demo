@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# 오르다 프로젝트 비밀 설정
+.streamlit/secrets.toml
+service_account.json
+*.json
