@@ -1,1 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오르다 교사용 운영 가이드</title>
+<style>
+  :root{
+    --ink:#111418;
+    --paper:#ffffff;
+    --line:#111418;
+    --run:#E4322B;      /* 심폐지구력 */
+    --step:#0E8C7F;     /* 순발력 */
+    --plank:#1D5BE0;    /* 근지구력 */
+    --flex:#2E9E3F;     /* 유연성 */
+    --band:#111418;
+    --soft:#f2f3f5;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:#e9eaec;
+    color:var(--ink);
+    font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",sans-serif;
+    line-height:1.75;
+    font-size:16px;
+  }
+  .page{
+    max-width:900px;
+    margin:0 auto;
+    background:var(--paper);
+  }
+  /* 표지 */
+  .cover{
+    background:var(--band);
+    color:#fff;
+    padding:64px 56px 56px;
+  }
+  .cover .kicker{
+    display:inline-block;
+    border:2px solid #fff;
+    padding:5px 14px;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:28px;
+  }
+  .cover h1{
+    font-size:52px;
+    line-height:1.1;
+    margin:0 0 10px;
+    font-weight:800;
+    letter-spacing:-1px;
+  }
+  .cover .sub{
+    font-size:20px;
+    color:#c9ccd1;
+    margin:0 0 36px;
+    font-weight:500;
+  }
+  .cover .orda-row{
+    display:flex;
+    gap:0;
+    flex-wrap:wrap;
+    border-top:1px solid #3a3f45;
+    padding-top:28px;
+  }
+  .cover .orda-row .cell{
+    flex:1 1 25%;
+    min-width:150px;
+    padding:6px 0;
+  }
+  .cover .orda-row .big{
+    font-size:34px;
+    font-weight:800;
+    line-height:1;
+  }
+  .cover .orda-row .lab{
+    font-size:15px;
+    color:#c9ccd1;
+    margin-top:6px;
+  }
+  .run{color:var(--run);}
+  .step{color:var(--step);}
+  .plank{color:var(--plank);}
+  .flex{color:var(--flex);}
 
+  .body{padding:48px 56px 64px;}
+
+  h2{
+    font-size:15px;
+    font-weight:800;
+    color:#fff;
+    background:var(--band);
+    display:inline-block;
+    padding:7px 16px;
+    margin:56px 0 24px;
+    letter-spacing:0.5px;
+  }
+  h2:first-of-type{margin-top:8px;}
+  h3{
+    font-size:21px;
+    font-weight:800;
+    margin:36px 0 12px;
+    padding-left:14px;
+    border-left:6px solid var(--band);
+    line-height:1.3;
+  }
+  p{margin:0 0 14px;}
+  .lead{
+    font-size:17px;
+    background:var(--soft);
+    padding:18px 22px;
+    border-left:4px solid var(--band);
+    margin:0 0 8px;
+  }
+  ul,ol{margin:0 0 16px; padding-left:22px;}
+  li{margin-bottom:7px;}
+  strong{font-weight:800;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0 24px;
+    font-size:15px;
+  }
+  th,td{
+    border:1px solid #cfd2d6;
+    padding:9px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  th{
+    background:var(--band);
+    color:#fff;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  tbody tr:nth-child(even){background:#f7f8f9;}
+
+  .tag{
+    display:inline-block;
+    color:#fff;
+    font-weight:800;
+    font-size:13px;
+    padding:2px 10px;
+    border-radius:3px;
+    margin-right:6px;
+    white-space:nowrap;
+  }
+  .tag.run{background:var(--run);}
+  .tag.step{background:var(--step);}
+  .tag.plank{background:var(--plank);}
+  .tag.flex{background:var(--flex);}
+
+  .note{
+    background:#fff7d6;
+    border:1px solid #e6d27a;
+    padding:14px 18px;
+    margin:18px 0;
+    font-size:15px;
+  }
+  .note b{color:#7a5b00;}
+
+  .diagram{
+    margin:22px 0 28px;
+    border:1px solid #cfd2d6;
+    background:#fbfbfc;
+    padding:20px;
+  }
+  .diagram-cap{
+    font-size:14px;
+    color:#555;
+    margin-top:10px;
+    text-align:center;
+  }
+  svg{display:block; width:100%; height:auto;}
+
+  .steps{counter-reset:s; list-style:none; padding-left:0;}
+  .steps li{
+    position:relative;
+    padding:2px 0 14px 46px;
+    margin-bottom:0;
+    border-left:2px solid #d5d8dc;
+    margin-left:15px;
+  }
+  .steps li::before{
+    counter-increment:s;
+    content:counter(s);
+    position:absolute;
+    left:-16px; top:0;
+    width:32px; height:32px;
+    background:var(--band);
+    color:#fff;
+    font-weight:800;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px;
+  }
+  .steps li:last-child{border-left:2px solid transparent;}
+
+  .footer{
+    background:var(--band);
+    color:#c9ccd1;
+    padding:30px 56px;
+    font-size:14px;
+    line-height:1.7;
+  }
+  .footer a{color:#fff;}
+  .footer .ft-title{color:#fff; font-weight:800; font-size:16px; margin-bottom:8px;}
+
+  @media print{
+    body{background:#fff;}
+    .page{max-width:none;}
+    h2{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    th, .tag, .cover, .footer, .steps li::before{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    h3{break-after:avoid;}
+    table,.diagram{break-inside:avoid;}
+  }
+  @media(max-width:640px){
+    .cover{padding:44px 26px;}
+    .cover h1{font-size:38px;}
+    .body{padding:36px 26px;}
+    .footer{padding:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 표지 -->
+  <header class="cover">
+    <span class="kicker">교사용 운영 가이드</span>
+    <h1>오르다<br>수업 운영 안내서</h1>
+    <p class="sub">데이터 기반 자기주도 건강 체력 관리 프로그램</p>
+    <div class="orda-row">
+      <div class="cell"><div class="big run">O</div><div class="lab">Observe · 나를 재다</div></div>
+      <div class="cell"><div class="big step">R</div><div class="lab">Read · 데이터를 읽다</div></div>
+      <div class="cell"><div class="big plank">D</div><div class="lab">Decide · 목표를 정하다</div></div>
+      <div class="cell"><div class="big flex">A</div><div class="lab">Act · 함께 실천하다</div></div>
+    </div>
+  </header>
+
+  <main class="body">
+
+    <p class="lead">이 안내서는 오르다 프로그램을 처음 적용하는 교사가 자신의 학급에서 4종목 체력 측정과 오르다 100 챌린지를 운영할 수 있도록 수업 진행 방법을 정리한 자료이다. 앱 설치와 계정 설정 절차는 공개 저장소의 안내 문서(README)에서 다룬다.</p>
+
+    <!-- Ⅰ -->
+    <h2>Ⅰ. 오르다 한눈에 보기</h2>
+
+    <h3>프로그램의 기본 원칙</h3>
+    <p>오르다는 학생이 자신의 체력 데이터를 스스로 기록하고 해석하여 목표를 세우고 실천하는 자기주도 프로그램이다. 웹앱은 이 과정을 지원하는 도구이며, 수업의 중심은 오프라인 신체활동에 있다. 40분 수업에서 앱을 사용하는 시간은 기록 입력과 결과 확인에 해당하는 7분에서 10분 내외이다.</p>
+
+    <h3>측정 4종목</h3>
+    <table>
+      <thead><tr><th>체력 요소</th><th>종목</th><th>단위</th><th>측정 방식</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag run">심폐지구력</span></td><td>3분 왕복달리기</td><td>회</td><td>교사 주도, 조별 시간 측정</td></tr>
+        <tr><td><span class="tag step">순발력</span></td><td>사이드스텝</td><td>회 / 20초</td><td>2인 1조 상호 관찰</td></tr>
+        <tr><td><span class="tag plank">근지구력</span></td><td>플랭크</td><td>초 (최대 180)</td><td>2인 1조 상호 관찰</td></tr>
+        <tr><td><span class="tag flex">유연성</span></td><td>윗몸 앞으로 굽히기</td><td>cm</td><td>2인 1조 상호 관찰</td></tr>
+      </tbody>
+    </table>
+
+    <h3>13주 운영 흐름</h3>
+    <table>
+      <thead><tr><th>구분</th><th>시기</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td>도입</td><td>1주차</td><td>프로그램 안내, 계정 배부, 1차 측정(기준 기록)</td></tr>
+        <tr><td>전개</td><td>2주차~12주차</td><td>주 1회 측정, 성장 그래프 확인, 오르다 100 챌린지 병행</td></tr>
+        <tr><td>정리</td><td>13주차</td><td>최종 측정, 변화 확인, 자기 성찰</td></tr>
+      </tbody>
+    </table>
+    <p>측정은 주 1회를 원칙으로 하되, 학교 여건에 따라 격주로 조정할 수 있다. 챌린지는 2주차 측정일부터 시작하여 매주 운영한다.</p>
+
+    <!-- Ⅱ -->
+    <h2>Ⅱ. 4종목 측정하기</h2>
+
+    <p class="lead">사이드스텝, 플랭크, 윗몸 앞으로 굽히기 세 종목은 2인 1조로 한 명이 측정하고 한 명이 기록을 세는 상호 관찰 방식으로 진행한다. 3분 왕복달리기는 인원 제한과 정확한 시간 측정이 필요하므로 교사 주도로 운영한다.</p>
+
+    <h3><span class="tag run">심폐지구력</span> 3분 왕복달리기</h3>
+    <p>15미터 구간을 왕복하며 3분 동안 이동한 횟수를 측정한다. 안전과 정확도를 위해 교사가 타이머를 관리하며 조를 나누어 진행한다.</p>
+    <ul>
+      <li>학급을 4개 조로 나눈다. 남학생을 1조와 2조, 여학생을 1조와 2조로 편성한다.</li>
+      <li>먼저 남학생 1조가 달리고 남학생 2조가 옆에서 횟수를 세어 준다. 이어 역할을 바꾼다.</li>
+      <li>같은 방식으로 여학생 1조와 2조가 서로의 기록을 세어 준다.</li>
+      <li>교사는 전체 타이머를 세팅하고 출발과 종료 신호를 준다. 한 번에 달리는 인원을 제한하여 충돌을 예방한다.</li>
+    </ul>
+    <div class="note"><b>안전 지도</b> · 반환점에서 급격히 방향을 바꾸므로 바닥 미끄럼과 학생 간 간격에 유의한다. 달리는 학생과 세는 학생의 위치를 명확히 분리한다.</div>
+
+    <h3><span class="tag step">순발력</span> 사이드스텝</h3>
+    <p>바닥에 그은 세 개의 선(중앙선과 양옆 선, 간격 약 1미터)을 20초 동안 옆으로 오가며 선을 밟은 횟수를 측정한다.</p>
+    <ul>
+      <li>측정자가 사이드스텝을 하는 동안 짝이 밟은 선의 수를 소리 내어 센다.</li>
+      <li>앱에 내장된 20초 타이머를 사용하면 별도 기기가 필요 없다.</li>
+      <li>양발이 선을 완전히 넘어야 1회로 인정한다.</li>
+    </ul>
+
+    <h3><span class="tag plank">근지구력</span> 플랭크</h3>
+    <p>팔꿈치를 바닥에 대고 몸을 일자로 유지한 시간을 초 단위로 측정한다. 최대 180초에서 종료한다.</p>
+    <ul>
+      <li>측정자가 자세를 유지하는 동안 짝이 앱의 스톱워치로 시간을 잰다.</li>
+      <li>엉덩이가 처지거나 솟아 자세가 무너지면 종료한다.</li>
+      <li>무리한 경쟁을 피하도록 상한(180초)을 안내한다.</li>
+    </ul>
+
+    <h3><span class="tag flex">유연성</span> 윗몸 앞으로 굽히기</h3>
+    <p>다리를 펴고 앉아 상체를 앞으로 굽혀 손끝이 닿은 지점을 센티미터로 측정한다. 발끝을 0으로 하여 더 나아가면 양수, 못 미치면 음수로 기록한다.</p>
+    <ul>
+      <li>반동을 주지 않고 천천히 굽혀 2초 이상 정지한 지점을 읽는다.</li>
+      <li>0.5센티미터 단위까지 입력할 수 있다.</li>
+    </ul>
+
+    <!-- Ⅲ -->
+    <h2>Ⅲ. 40분 수업 운영하기</h2>
+
+    <h3>스테이션 배치</h3>
+    <p>측정일에는 4종목을 동시에 운영하는 4개 스테이션을 구성하고 모둠이 순환한다. 왕복달리기 스테이션은 교사가 상주하여 조별 측정을 관리하고, 나머지 세 스테이션은 2인 1조 상호 관찰로 진행한다.</p>
+
+    <div class="diagram">
+      <svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="4개 스테이션 순환 배치도">
+        <!-- 체육관 외곽 -->
+        <rect x="10" y="10" width="700" height="420" fill="#ffffff" stroke="#111418" stroke-width="2"/>
+
+        <!-- 스테이션 1: 왕복달리기 (교사 주도) -->
+        <rect x="34" y="40" width="300" height="170" fill="#fdeceb" stroke="#E4322B" stroke-width="2"/>
+        <text x="50" y="66" font-family="Malgun Gothic" font-size="15" font-weight="800" fill="#E4322B">스테이션 1 · 3분 왕복달리기</text>
+        <text x="50" y="88" font-family="Malgun Gothic" font-size="12" fill="#7a1512">교사 주도 · 조별 시간 측정</text>
+        <!-- 왕복 레인 -->
+        <line x1="60" y1="120" x2="300" y2="120" stroke="#E4322B" stroke-width="2" stroke-dasharray="6 5"/>
+        <line x1="60" y1="150" x2="300" y2="150" stroke="#E4322B" stroke-width="2" stroke-dasharray="6 5"/>
+        <line x1="60" y1="180" x2="300" y2="180" stroke="#E4322B" stroke-width="2" stroke-dasharray="6 5"/>
+        <rect x="52" y="108" width="8" height="84" fill="#E4322B"/>
+        <rect x="300" y="108" width="8" height="84" fill="#E4322B"/>
+        <text x="120" y="205" font-family="Malgun Gothic" font-size="11" fill="#7a1512">1조 달리기 · 2조 계수 → 역할 교대</text>
+
+        <!-- 스테이션 2: 사이드스텝 -->
+        <rect x="386" y="40" width="300" height="170" fill="#e6f5f2" stroke="#0E8C7F" stroke-width="2"/>
+        <text x="402" y="66" font-family="Malgun Gothic" font-size="15" font-weight="800" fill="#0E8C7F">스테이션 2 · 사이드스텝</text>
+        <text x="402" y="88" font-family="Malgun Gothic" font-size="12" fill="#0a5a51">2인 1조 상호 관찰 · 20초</text>
+        <line x1="470" y1="115" x2="470" y2="185" stroke="#0E8C7F" stroke-width="3"/>
+        <line x1="540" y1="115" x2="540" y2="185" stroke="#0E8C7F" stroke-width="3"/>
+        <line x1="610" y1="115" x2="610" y2="185" stroke="#0E8C7F" stroke-width="3"/>
+        <circle cx="540" cy="150" r="11" fill="#0E8C7F"/>
+        <path d="M 505 150 L 490 150 M 490 150 L 497 143 M 490 150 L 497 157" stroke="#0E8C7F" stroke-width="2" fill="none"/>
+        <path d="M 575 150 L 590 150 M 590 150 L 583 143 M 590 150 L 583 157" stroke="#0E8C7F" stroke-width="2" fill="none"/>
+
+        <!-- 스테이션 3: 플랭크 -->
+        <rect x="34" y="240" width="300" height="170" fill="#e8effc" stroke="#1D5BE0" stroke-width="2"/>
+        <text x="50" y="266" font-family="Malgun Gothic" font-size="15" font-weight="800" fill="#1D5BE0">스테이션 3 · 플랭크</text>
+        <text x="50" y="288" font-family="Malgun Gothic" font-size="12" fill="#123a8f">2인 1조 상호 관찰 · 최대 180초</text>
+        <line x1="80" y1="360" x2="230" y2="352" stroke="#1D5BE0" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="235" cy="350" r="9" fill="#1D5BE0"/>
+        <line x1="95" y1="360" x2="88" y2="382" stroke="#1D5BE0" stroke-width="5" stroke-linecap="round"/>
+        <line x1="210" y1="356" x2="218" y2="380" stroke="#1D5BE0" stroke-width="5" stroke-linecap="round"/>
+        <text x="255" y="360" font-family="Malgun Gothic" font-size="12" fill="#123a8f">⏱ 앱 스톱워치</text>
+
+        <!-- 스테이션 4: 윗몸 앞으로 굽히기 -->
+        <rect x="386" y="240" width="300" height="170" fill="#e8f6ea" stroke="#2E9E3F" stroke-width="2"/>
+        <text x="402" y="266" font-family="Malgun Gothic" font-size="15" font-weight="800" fill="#2E9E3F">스테이션 4 · 윗몸 앞으로 굽히기</text>
+        <text x="402" y="288" font-family="Malgun Gothic" font-size="12" fill="#1c6427">2인 1조 상호 관찰 · 0.5cm 단위</text>
+        <line x1="440" y1="378" x2="600" y2="378" stroke="#2E9E3F" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="470" cy="348" r="9" fill="#2E9E3F"/>
+        <line x1="470" y1="357" x2="560" y2="366" stroke="#2E9E3F" stroke-width="5" stroke-linecap="round"/>
+        <path d="M 560 366 L 585 372" stroke="#2E9E3F" stroke-width="4" stroke-linecap="round"/>
+
+        <!-- 순환 화살표 (가운데) -->
+        <g>
+          <path d="M 352 130 A 60 60 0 0 1 352 320" fill="none" stroke="#111418" stroke-width="2.5" marker-end="url(#ah)"/>
+          <path d="M 368 320 A 60 60 0 0 1 368 130" fill="none" stroke="#111418" stroke-width="2.5" marker-end="url(#ah)"/>
+          <text x="360" y="228" font-family="Malgun Gothic" font-size="13" font-weight="800" fill="#111418" text-anchor="middle">모둠</text>
+          <text x="360" y="245" font-family="Malgun Gothic" font-size="13" font-weight="800" fill="#111418" text-anchor="middle">순환</text>
+        </g>
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M1 1 L8 5 L1 9" fill="none" stroke="#111418" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">4개 스테이션 동시 운영 · 모둠이 정해진 순서로 순환하며 4종목을 측정</div>
+    </div>
+
+    <h3>측정일 40분 운영 순서</h3>
+    <table>
+      <thead><tr><th>시간</th><th>활동</th><th>앱</th></tr></thead>
+      <tbody>
+        <tr><td>0~5분</td><td>준비운동, 오늘 측정 종목과 스테이션 순서 안내</td><td>미사용</td></tr>
+        <tr><td>5~28분</td><td>4개 스테이션 순환 측정 (모둠별 이동)</td><td>미사용</td></tr>
+        <tr><td>28~35분</td><td>각자 기기로 기록 입력, 성장 그래프와 AI 피드백 확인</td><td>사용</td></tr>
+        <tr><td>35~40분</td><td>모둠 목표 조정, 정리운동</td><td>일부</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><b>운영 팁</b> · 왕복달리기 스테이션은 교사가 상주해야 하므로, 이 스테이션을 순환의 마지막 또는 처음에 고정 배치하고 다른 세 스테이션을 먼저 돌게 하면 동선이 겹치지 않는다. 기록 입력은 측정을 모두 마친 후 한 번에 진행하여 기기 사용 시간을 최소화한다.</div>
+
+    <h3>측정하지 않은 종목 처리</h3>
+    <p>결석이나 기기 문제로 일부 종목을 측정하지 못한 경우, 해당 종목만 비워 두고 저장할 수 있다. 앱은 같은 날짜에 빈 종목을 나중에 이어서 입력하도록 되어 있다. 교사 화면의 기록 입력 메뉴에서 대리 입력도 가능하다.</p>
+
+    <!-- Ⅳ -->
+    <h2>Ⅳ. 오르다 100 챌린지 운영하기</h2>
+
+    <p class="lead">오르다 100 챌린지는 학생이 4종목 관련 운동을 스스로 실천하고 점수로 기록하는 주간 활동이다. 운동은 집이든 학교 쉬는 시간이든 장소를 가리지 않으며, 할 수 있을 때 최대한 하도록 지도한다.</p>
+
+    <h3>점수 환산 기준</h3>
+    <p>학생이 한 운동량을 정해진 기준에 따라 점수로 바꾸어 입력한다. 자세한 기준과 동작 그림은 앱 안의 운동 도움말에서 확인할 수 있다.</p>
+    <table>
+      <thead><tr><th>체력 요소</th><th>운동 예시</th><th>환산 기준</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag run">심폐지구력</span></td><td>버피 / 줄넘기</td><td>버피 1회 = 1점, 줄넘기 5회 = 1점</td></tr>
+        <tr><td><span class="tag plank">근지구력</span></td><td>플랭크 / 스쿼트 / 니푸시업</td><td>플랭크 5초 = 1점, 그 외 1회 = 1점</td></tr>
+        <tr><td><span class="tag step">순발력</span></td><td>라인터치 / 사이드스텝</td><td>1회 왕복 = 1점</td></tr>
+        <tr><td><span class="tag flex">유연성</span></td><td>스트레칭 / 앉아 굽히기</td><td>10초 유지 = 1점</td></tr>
+      </tbody>
+    </table>
+
+    <h3>목표와 규칙</h3>
+    <ul>
+      <li><strong>개인 목표</strong> · 일주일에 100점을 채운다.</li>
+      <li><strong>모둠 목표</strong> · 모둠원 1인 평균이 100점을 넘으면 모둠 성공으로 인정한다. 모둠원 수가 3명과 4명으로 다르더라도 1인 평균으로 계산하므로 공정하다.</li>
+      <li><strong>종목 균형</strong> · 한 종목은 한 라운드에 최대 50점까지만 쌓을 수 있다. 4종목을 골고루 해야 100점을 채울 수 있다.</li>
+      <li><strong>보너스 라운드</strong> · 4종목을 모두 50점씩 채우면 다음 라운드가 열려 계속 도전할 수 있다.</li>
+      <li><strong>왕관</strong> · 3주 연속 100점을 달성하면 이름 앞에 왕관 표시가 붙는다.</li>
+    </ul>
+    <div class="note"><b>장난 입력 방지</b> · 같은 종목은 하루 최대 3회, 1회 입력은 최대 50점으로 제한되어 있다. 지나치게 큰 값이 한 번에 입력되지 않으므로 교사가 매번 확인할 필요는 없다.</div>
+
+    <h3>주차 운영과 교사 확인 포인트</h3>
+    <p>새 주차는 매주 수요일에 시작된다. 지난 주차의 기록은 수정할 수 없고 이번 주차에만 입력할 수 있다. 교사는 관리자 화면에서 다음을 확인한다.</p>
+    <ul>
+      <li><strong>모둠 관리</strong> 메뉴 · 모둠별 평균 점수, 달성 모둠 수, 누적 랭킹</li>
+      <li><strong>챌린지 상세</strong> 메뉴 · 학생 개인별 종목·주차별 참여 내역, 미참여 학생 확인</li>
+    </ul>
+    <p>참여가 저조한 학생은 챌린지 상세 화면에서 바로 드러나므로, 개별 격려나 모둠 내 독려로 연결할 수 있다.</p>
+
+    <!-- Ⅴ -->
+    <h2>Ⅴ. 수업일지와 자주 묻는 질문</h2>
+
+    <h3>회차별 수업일지 양식</h3>
+    <p>측정일마다 아래 항목을 간단히 기록해 두면 프로그램 운영 과정을 정리하는 데 도움이 된다.</p>
+    <table>
+      <thead><tr><th>항목</th><th>기록 내용</th></tr></thead>
+      <tbody>
+        <tr><td>측정 회차 / 날짜</td><td>【 회차 】 · 【 날짜 】</td></tr>
+        <tr><td>측정 종목</td><td>【 측정한 종목 】</td></tr>
+        <tr><td>참여 인원</td><td>【 참여 / 전체 】</td></tr>
+        <tr><td>운영 특이사항</td><td>【 결석, 기기 문제, 안전 관련 등 】</td></tr>
+        <tr><td>학생 반응</td><td>【 흥미, 어려움 등 관찰 내용 】</td></tr>
+        <tr><td>다음 회차 계획</td><td>【 조정할 점 】</td></tr>
+      </tbody>
+    </table>
+
+    <h3>자주 묻는 질문</h3>
+
+    <p><strong>학생 비밀번호는 무엇인가요?</strong><br>
+    초기 세팅으로 생성된 학생의 비밀번호는 전원 0000으로 동일하다. 학생들이 처음 로그인할 때 안내하기 쉽도록 통일해 두었으며, 필요하면 교사 화면의 학생 관리 메뉴에서 개별로 변경할 수 있다.</p>
+
+    <p><strong>측정 회차는 어떻게 정해지나요?</strong><br>
+    앱이 자동으로 계산한다. 같은 날 입력한 기록은 같은 회차로 묶이고, 다른 날 입력하면 다음 회차로 올라간다. 교사가 회차를 직접 지정할 필요는 없다.</p>
+
+    <p><strong>AI 피드백이 나오지 않아요.</strong><br>
+    한 종목에 기록이 2회 이상 쌓여야 AI 피드백이 나온다. 측정 초기에는 정상적으로 나오지 않을 수 있다.</p>
+
+    <p><strong>모둠 기능이 보이지 않아요.</strong><br>
+    모둠 시트가 있어야 모둠과 챌린지 기능이 작동한다. 구글 시트에 모둠 탭을 만들고 학년·반·모둠번호·모둠이름·학생이름 순서로 입력한다. 자세한 방법은 공개 저장소 안내 문서에 있다.</p>
+
+    <p><strong>여러 명이 동시에 접속하면 느려요.</strong><br>
+    측정일에 전원이 동시에 기록을 입력하면 잠시 느려질 수 있다. 모둠별로 시차를 두어 입력하게 하면 완화된다. 잠시 후 새로고침하면 정상화된다.</p>
+
+  </main>
+
+  <footer class="footer">
+    <div class="ft-title">오르다 · 데이터 기반 자기주도 건강 체력 관리 프로그램</div>
+    <p>앱 설치와 계정 설정 방법은 공개 저장소 안내 문서(README)에서 확인할 수 있습니다.<br>
+    <a href="https://github.com/MKS0715/orda_demo" style="color:#111418;font-weight:700;">github.com/MKS0715/orda_demo</a><br>
+    이 안내서는 온라인으로 제공되며, 운영 과정에서 확인된 내용을 반영하여 갱신됩니다.</p>
+  </footer>
+
+</div>
+</body>
+</html>
